@@ -337,18 +337,7 @@ El spec de v1 (`SPEC.md` + `CONTEXT.md`) equivale a la salida del adaptador **SD
 
 El proyecto sigue [SemVer](https://semver.org/lang/es/) y documenta cada versión en [CHANGELOG.md](CHANGELOG.md) (histórico, más reciente arriba) y [RELEASE-NOTES.md](RELEASE-NOTES.md) (última versión). La versión vigente se muestra al inicio de este README.
 
-Para publicar una versión se usa el script local **`generar-release.sh`**, que a partir de los commits desde el último tag (en formato Conventional Commits):
-
-1. Valida la versión y actualiza el bloque de versión de este README.
-2. Inserta la nueva entrada en `CHANGELOG.md`, agrupada por tipo (`feat`, `fix`, `docs`, `refactor`, `perf`, `chore`…).
-3. Regenera `RELEASE-NOTES.md` con novedades y contribuidores.
-4. Opcionalmente crea el commit `chore: release vX.Y.Z`, el tag y hace push.
-
-```bash
-./generar-release.sh 2.1.0     # o sin argumento para que pregunte la versión
-```
-
-> El script **no se versiona** (está en `.gitignore`): es una herramienta local del mantenedor. Los archivos que produce —README, CHANGELOG, RELEASE-NOTES— sí se versionan. Para que las entradas salgan limpias, escribe los commits en Conventional Commits (`tipo: descripción`).
+Cada versión se etiqueta con un tag (`vX.Y.Z`) y agrupa los cambios por tipo de [Conventional Commit](https://www.conventionalcommits.org/) (`feat`, `fix`, `docs`, `refactor`, `perf`, `chore`…). Para que las entradas salgan limpias, escribe los commits en ese formato (`tipo: descripción`).
 
 ---
 

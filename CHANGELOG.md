@@ -3,8 +3,6 @@
 Todos los cambios notables de este proyecto se documentan aquí.
 El formato se basa en [Conventional Commits](https://www.conventionalcommits.org/) y el versionado sigue [SemVer](https://semver.org/lang/es/).
 
-> Las entradas de versión se generan automáticamente con `generar-release.sh` (local, no versionado). No edites el bloque inmediatamente debajo del marcador a mano salvo para corregir; el script inserta ahí cada nueva versión.
-
 <!-- NEW_RELEASES -->
 
 ## v2.0.0 (2026-06-15)

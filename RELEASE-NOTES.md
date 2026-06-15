@@ -10,5 +10,3 @@
 
 ## 👥 Contribuidores
 - Ing. Oscar Lobo
-
-> Este archivo se regenera en cada release con `generar-release.sh` (refleja siempre la última versión).
