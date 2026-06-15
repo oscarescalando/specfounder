@@ -94,13 +94,17 @@ Formato `S{sección}.Q{n}` (p. ej. `S4.Q2`). Cada sub-agente Entrevistador usa e
 
 Tras **cada** respuesta del usuario, y **antes** de formular la siguiente pregunta, en este orden:
 
-1. **Actualizar drafts**: escribir lo aprendido en `SPEC.draft.md` y/o `CONTEXT.draft.md` y/o `adr/`.
-2. **Reescribir `session.md`**: actualizar `updated_at`, el estado de la sección, el log de decisiones, las ramas abiertas y —lo más importante— el bloque **"Siguiente acción"** con la pregunta exacta que toca.
+1. **Actualizar drafts** (incremental): editar la parte afectada de `SPEC.draft.md` y/o `CONTEXT.draft.md` y/o `adr/`.
+2. **Actualizar `session.md`** (incremental — ver más abajo): `updated_at`, el estado de la sección, *append* de una línea al log de decisiones, las ramas abiertas y —lo más importante— el bloque **"Siguiente acción"** con la pregunta exacta que toca.
 3. **Recién entonces** formular la siguiente pregunta al usuario.
 
 > Si el agente formula una pregunta sin haber persistido el turno anterior, está violando el protocolo. El checkpoint es atómico respecto a la pregunta: primero se persiste, luego se pregunta.
 
-Escritura segura: reescribir `session.md` completo cada vez (es pequeño). Los drafts se editan incrementalmente.
+### Escritura eficiente (rendimiento)
+El checkpoint se ejecuta ~1 vez por turno durante decenas de turnos, así que es el mayor sumidero de tokens de salida del sistema (ver `../RENDIMIENTO.md`). Reglas:
+- **Edición incremental, no reescritura total.** Modifica solo los campos del frontmatter que cambiaron, *append* de **una línea** al log de decisiones, y reemplaza el bloque "Siguiente acción". No regeneres el archivo entero.
+- **Ledger magro.** El log es un resumen (una línea por decisión), no una transcripción. Tope sugerido: **últimas ~12 entradas + todas las decisiones irreversibles (ADR)**; el detalle completo vive en los drafts.
+- **Excepción chat puro:** sin acceso a archivos no hay edición incremental — reimprime el ledger íntegro tras cada turno y pide guardarlo.
 
 ---
 

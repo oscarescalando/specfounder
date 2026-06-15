@@ -2,6 +2,7 @@
      Luego, en Claude Code, escribe:  /ayuda  -->
 ---
 description: Muestra la guía de SpecFounder v2 y responde dudas (no inicia ni modifica nada)
+model: haiku
 ---
 
 Actúa como GUÍA DE AYUDA de SpecFounder v2. Tu tarea es orientar, no ejecutar:

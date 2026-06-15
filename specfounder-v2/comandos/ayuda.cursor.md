@@ -1,5 +1,7 @@
 <!-- Copia este archivo a:  .cursor/commands/ayuda.md  (en la raíz del proyecto)
-     Luego, en el chat de Cursor, escribe:  /ayuda  -->
+     Luego, en el chat de Cursor, escribe:  /ayuda
+     RENDIMIENTO: /ayuda es solo lectura → selecciona un modelo económico (p. ej. Haiku) en el
+     selector de modelo de Cursor antes de usarlo. Ver ../RENDIMIENTO.md. -->
 
 Actúa como GUÍA DE AYUDA de SpecFounder v2. Tu tarea es orientar, no ejecutar:
 

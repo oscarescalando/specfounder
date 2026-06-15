@@ -1,6 +1,8 @@
 <!-- Codex CLI:  copia este archivo a  ~/.codex/prompts/ayuda.md  → invócalo con  /ayuda
      VSCode + GitHub Copilot:  copia a  .github/prompts/ayuda.prompt.md  → /ayuda en Copilot Chat
-     (el mismo texto sirve para ambos) -->
+     (el mismo texto sirve para ambos)
+     RENDIMIENTO: /ayuda es solo lectura → si tu cliente permite elegir modelo, usa uno
+     económico (p. ej. Haiku) para este comando. Ver ../RENDIMIENTO.md. -->
 
 Actúa como GUÍA DE AYUDA de SpecFounder v2. Tu tarea es orientar, no ejecutar:
 

@@ -1,5 +1,9 @@
 # Sistema de Prompts — SpecFounder
 
+<!-- VERSION:START -->
+**Versión actual:** `v2.0.0` (2026-06-15) — ver [CHANGELOG.md](CHANGELOG.md) · [RELEASE-NOTES.md](RELEASE-NOTES.md)
+<!-- VERSION:END -->
+
 Repositorio de **especificaciones de agentes** para Spec-Driven Development (SDD). Su objetivo es construir la **capa de fundación del spec** de cualquier proyecto —de **código** (cualquier tecnología) o **creativo** (novela, serie de imágenes, guion…)— con **igualdad semántica**: que los términos del usuario sean exactamente los que la IA asimila como propios.
 
 > ### 🚀 ¿Cómo empiezo? Dos formas
@@ -82,7 +86,8 @@ Cuando la herramienta **no** soporta sub-agentes, todo se colapsa en `specfounde
     ├── methodologies/                 ← openspec, github-spec-kit, generic-sdd, creative-bible (mapeos + handoff)
     ├── skills/                        ← sf-domain, sf-vision, sf-checkpoint, sf-resume, sf-glossary-sync, sf-explore, sf-emit
     ├── persistence/                   ← STATE-SCHEMA.md + templates (la memoria persistente)
-    └── integrations/                  ← claude-code, codex, opencode, cursor, antigravity
+    ├── integrations/                  ← claude-code, codex, opencode, cursor, antigravity
+    └── RENDIMIENTO.md                 ← estrategia de eficiencia de tokens (modelo por rol + checkpoint incremental)
 ```
 
 ---
@@ -298,6 +303,17 @@ Checkpoint hecho. Continúo con la Sección 2 (Usuarios). ¿Listo?
 
 ---
 
+## Rendimiento y costo de tokens
+
+SpecFounder es eficiente por diseño, con dos palancas (detalle en [`specfounder-v2/RENDIMIENTO.md`](specfounder-v2/RENDIMIENTO.md)):
+
+- **Modelo por rol** — no todo necesita un modelo de alto desempeño. *Opus piensa* (Entrevistador, Generador de Visión, Arquitecto/ADR), *Sonnet lee y orquesta* (Coordinador, Explorador, Glosarista), *Haiku rellena y guarda* (Adaptador, comando `/ayuda`). En **Claude Code** se aplica con `model:` en cada sub-agente y slash-command; en el **monolito** (Codex, Cursor, OpenCode, chat) se elige un único modelo de sesión (Sonnet por defecto, Opus si el proyecto es complejo).
+- **Checkpoint incremental** — `session.md` se actualiza por edición (no se regenera entero) y se mantiene magro; es la operación más repetida, así que ahí está el mayor ahorro.
+
+Lo que **nunca** se sacrifica por eficiencia: una pregunta por turno, checkpoint antes de cada pregunta, igualdad semántica, Visión ≤ 2 párrafos y los 3 criterios de ADR.
+
+---
+
 ## Reglas inviolables (heredadas de v1, ampliadas)
 
 - Una sola pregunta por turno.
@@ -314,6 +330,25 @@ Checkpoint hecho. Continúo con la Sección 2 (Usuarios). ¿Listo?
 ## Migración desde v1
 
 El spec de v1 (`SPEC.md` + `CONTEXT.md`) equivale a la salida del adaptador **SDD genérico** de v2. Para migrarlo a OpenSpec o Spec-Kit, ejecuta una sesión en modo **re-spec parcial** eligiendo la nueva metodología; el Adaptador reestructura sin reescribir el contenido.
+
+---
+
+## Versionado y releases
+
+El proyecto sigue [SemVer](https://semver.org/lang/es/) y documenta cada versión en [CHANGELOG.md](CHANGELOG.md) (histórico, más reciente arriba) y [RELEASE-NOTES.md](RELEASE-NOTES.md) (última versión). La versión vigente se muestra al inicio de este README.
+
+Para publicar una versión se usa el script local **`generar-release.sh`**, que a partir de los commits desde el último tag (en formato Conventional Commits):
+
+1. Valida la versión y actualiza el bloque de versión de este README.
+2. Inserta la nueva entrada en `CHANGELOG.md`, agrupada por tipo (`feat`, `fix`, `docs`, `refactor`, `perf`, `chore`…).
+3. Regenera `RELEASE-NOTES.md` con novedades y contribuidores.
+4. Opcionalmente crea el commit `chore: release vX.Y.Z`, el tag y hace push.
+
+```bash
+./generar-release.sh 2.1.0     # o sin argumento para que pregunte la versión
+```
+
+> El script **no se versiona** (está en `.gitignore`): es una herramienta local del mantenedor. Los archivos que produce —README, CHANGELOG, RELEASE-NOTES— sí se versionan. Para que las entradas salgan limpias, escribe los commits en Conventional Commits (`tipo: descripción`).
 
 ---
 

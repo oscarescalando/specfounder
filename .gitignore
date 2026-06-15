@@ -1,5 +1,8 @@
 /CLAUDE.md
 /.claude
 
+# Generador de release (local, no se versiona; los archivos que produce sí)
+/generar-release.sh
+
 # macOS
 .DS_Store

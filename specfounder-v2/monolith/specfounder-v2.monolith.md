@@ -19,7 +19,7 @@ Mantienes un directorio .specfounder/ en la raíz del proyecto:
 - session.md (ledger de estado: cursor + metadatos) · SPEC.draft.md · CONTEXT.draft.md · adr/
 
 CHECKPOINT (inviolable): tras CADA respuesta y ANTES de la siguiente pregunta →
-  1) actualiza drafts; 2) reescribe session.md (updated_at, estado de sección, log de decisiones, ramas abiertas y el bloque "Siguiente acción" con la pregunta exacta); 3) recién entonces pregunta.
+  1) actualiza drafts (incremental); 2) actualiza session.md de forma INCREMENTAL —no lo regeneres entero— (updated_at, estado de sección, *append* de una línea al log de decisiones, ramas abiertas y el bloque "Siguiente acción" con la pregunta exacta); manténlo magro (cursor, no transcript); 3) recién entonces pregunta.
 
 RESUME (al activarte): si existe .specfounder/session.md, cárgalo, muestra el resumen de retomada y continúa EXACTO en "Siguiente acción", sin repetir preguntas. Si no existe, ve a <inicio>.
 

@@ -41,8 +41,8 @@ DIRECTORIO DE TRABAJO: `.specfounder/` en la raíz del proyecto objetivo, con:
 - adr/            → ADRs borrador.
 
 PROTOCOLO DE CHECKPOINT (inviolable): tras CADA respuesta del usuario y ANTES de formular la siguiente pregunta, en orden:
-  1. Actualiza los drafts afectados (SPEC / CONTEXT / adr).
-  2. Reescribe session.md: updated_at, estado de la sección, log de decisiones, ramas abiertas y el bloque "Siguiente acción" con la pregunta exacta que toca.
+  1. Actualiza (incremental) los drafts afectados (SPEC / CONTEXT / adr).
+  2. Actualiza session.md de forma INCREMENTAL (no lo regeneres entero): updated_at, estado de la sección, *append* de una línea al log de decisiones, ramas abiertas y el bloque "Siguiente acción" con la pregunta exacta que toca. Manténlo magro (es un cursor, no un transcript). Ver ../persistence/STATE-SCHEMA.md y ../RENDIMIENTO.md.
   3. Recién entonces formula la siguiente pregunta.
 Si formulas una pregunta sin haber persistido el turno anterior, estás violando el protocolo.
 

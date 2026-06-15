@@ -1,8 +1,12 @@
 <!-- Copia este archivo a:  .opencode/command/ayuda.md  (en la raíz del proyecto)
      Luego, en OpenCode, escribe:  /ayuda
-     Verifica la ruta de comandos según tu versión de OpenCode. -->
+     Verifica la ruta de comandos según tu versión de OpenCode.
+     RENDIMIENTO: /ayuda es solo lectura → conviene un modelo económico. Si tu versión de
+     OpenCode soporta `model:` en el frontmatter del comando, descomenta la línea de abajo
+     y ajústala al identificador de tu proveedor (p. ej. un modelo "haiku"). Ver ../RENDIMIENTO.md. -->
 ---
 description: Muestra la guía de SpecFounder v2 y responde dudas (no inicia ni modifica nada)
+# model: anthropic/claude-haiku-4-5   # modelo económico para ayuda (ajusta al id de tu proveedor)
 ---
 
 Actúa como GUÍA DE AYUDA de SpecFounder v2. Tu tarea es orientar, no ejecutar:
